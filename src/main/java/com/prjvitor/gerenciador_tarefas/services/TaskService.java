@@ -12,13 +12,16 @@ import com.prjvitor.gerenciador_tarefas.repositories.UserRepository;
 
 @Service
 public class TaskService {
+
+    private final EmailService emailService;
     
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
-    public TaskService(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository, EmailService emailService) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
+        this.emailService = emailService;
     }
 
     // Criar métodos para salvar, atualizar, deletar e listar tarefas
@@ -34,7 +37,20 @@ public class TaskService {
             User user = userRepository.findById(taskDTO.getId_user()).orElse(null);
             task.setUser(user);
         }
-        return taskRepository.save(task);
+        Task savedTask = taskRepository.save(task);
+
+        // Enviar e-mail ao criar a tarefa
+        if (task.getUser() != null && task.getUser().getEmail() != null) {
+            String to = task.getUser().getEmail();
+            String subject = "Nova Tarefa Criada: " + task.getTitle();
+            String text = "Uma nova tarefa foi criada:\n\n" +
+                          "Título: " + task.getTitle() + "\n" +
+                          "Descrição: " + task.getDescription() + "\n" +
+                          "Prazo: " + task.getDeadline() + "\n";
+            emailService.sendEmail(to, subject, text);
+        }
+
+        return savedTask;
     }
 
     public Task updateTask(Long id, TaskDTO taskDTO) {
