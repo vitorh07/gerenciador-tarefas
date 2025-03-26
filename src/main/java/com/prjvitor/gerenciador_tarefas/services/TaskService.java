@@ -14,7 +14,6 @@ import com.prjvitor.gerenciador_tarefas.repositories.UserRepository;
 public class TaskService {
 
     private final EmailService emailService;
-    
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
 
@@ -23,8 +22,6 @@ public class TaskService {
         this.userRepository = userRepository;
         this.emailService = emailService;
     }
-
-    // Criar métodos para salvar, atualizar, deletar e listar tarefas
 
     public Task saveTask(TaskDTO taskDTO) {
         Task task = new Task();
@@ -56,7 +53,7 @@ public class TaskService {
     public Task updateTask(Long id, TaskDTO taskDTO) {
         Task task = taskRepository.findById(id).orElse(null);
         if (task == null) {
-            return null; // Ou você pode lançar uma exceção genérica, se preferir
+            return null;
         }
         
         task.setTitle(taskDTO.getTitle());
@@ -81,10 +78,6 @@ public class TaskService {
     }
 
     public Task getTaskById(Long id){
-        return taskRepository.findById(id).orElse(null);
-    }
-
-    public Task getUserById(Long id){
         return taskRepository.findById(id).orElse(null);
     }
 
