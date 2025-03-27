@@ -84,4 +84,13 @@ public class TaskService {
     public List<Task> getTaskByUser(User user){
         return taskRepository.findByUser(user);
     }
+
+    public Task updateTaskCompleted(Long id, boolean completed) {
+        Task task = taskRepository.findById(id).orElse(null);
+        if (task == null) {
+            return null; // Ou lançar uma exceção personalizada
+        }
+        task.setCompleted(completed);
+        return taskRepository.save(task);
+    }
 }

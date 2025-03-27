@@ -9,14 +9,12 @@
 <body>
     <div id="container">
         <h2>TASKS</h2>
-        <!-- <div id="1">
-            <h2 id="title-task"></h2>
-            <p id="description"></p>
-            <p id="final-date"></p>
-            <input type="checkbox" name="completed" id="completed">
-        </div> -->
         <button onclick="rCreate()">CREATE TASK</button>
     </div>
     <script src="./js/view.js"></script>
+    <script>
+        // Carregar as tarefas ao carregar a página
+        window.onload = loadTask;
+    </script>
 </body>
 </html>

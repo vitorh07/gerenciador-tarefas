@@ -1,9 +1,9 @@
-*{
+* {
     margin: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     background-color: #F4f4f4;
     display: flex;
     align-items: center;
@@ -12,53 +12,81 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#container{
+#container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Alinha os itens no topo */
     align-items: center;
     background-color: #FFFFFF;
     border: 1px solid #E0E0E0;
     border-radius: 10px;
     width: 500px;
-    height: 556px;
+    min-height: 200px; /* Altura mínima para o contêiner */
+    max-height: 80vh; /* Altura máxima para evitar que ultrapasse a tela */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+    padding: 20px;
+    gap: 20px; /* Espaçamento entre os elementos */
 }
 
-h2{
-    margin-bottom: 81px;
-    font-size: 58px;
+h2 {
+    margin-bottom: 20px;
+    font-size: 36px;
     text-transform: uppercase;
 }
 
-.form{
-    background-color: #F9F9F9;
-    border: 1px solid #DADADA;
-    height: 56px;
-    margin-bottom: 31px;
-    width: 420px;
-    padding-left: 30px;
-}
-
-.form::placeholder{
-    color: #a0a0a0;
-}
-
-button{
+button {
     background-color: #2196F3;
     color: #FFFFFF;
     height: 56px;
-    width: 420px;
+    width: 100%; /* Ajusta o botão para ocupar toda a largura do contêiner */
     border: 1px solid #1976D2;
-    border-radius: 10px; 
-    margin-bottom: 19px;
-    font-size: 36px;
+    border-radius: 10px;
+    font-size: 18px;
+    margin-top: auto; /* Empurra o botão para o final do contêiner */
 }
 
-button:hover{
+button:hover {
     cursor: pointer;
 }
 
-p a{
-    color: #2196F3;
-    text-decoration: none;
+.task {
+    background-color: #F9F9F9;
+    border: 1px solid #DADADA;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%; /* Ocupa toda a largura do contêiner */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.task p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.task input[type="checkbox"] {
+    margin-top: 10px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* Estilo para os inputs */
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #DADADA;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #F9F9F9;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }
