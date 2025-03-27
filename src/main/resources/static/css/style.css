@@ -21,7 +21,7 @@ body{
     border: 1px solid #E0E0E0;
     border-radius: 10px;
     width: 500px;
-    height: 656px;
+    height: 556px;
 }
 
 h2{
@@ -43,7 +43,7 @@ h2{
     color: #a0a0a0;
 }
 
-#login{
+button{
     background-color: #2196F3;
     color: #FFFFFF;
     height: 56px;
@@ -52,6 +52,10 @@ h2{
     border-radius: 10px; 
     margin-bottom: 19px;
     font-size: 36px;
+}
+
+button:hover{
+    cursor: pointer;
 }
 
 p a{

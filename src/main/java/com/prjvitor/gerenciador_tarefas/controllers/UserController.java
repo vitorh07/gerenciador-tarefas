@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.prjvitor.gerenciador_tarefas.DTO.LoginRequest;
+import com.prjvitor.gerenciador_tarefas.DTO.LoginResponse;
 import com.prjvitor.gerenciador_tarefas.model.User;
 import com.prjvitor.gerenciador_tarefas.services.UserService;
 
@@ -64,13 +65,14 @@ public class UserController {
     // Login
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-    User loggedUser = userService.login(request.getIdentifier(), request.getPassword());
+        User loggedUser = userService.login(request.getIdentifier(), request.getPassword());
 
-    if (loggedUser == null) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        if (loggedUser == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas");
+        }
+
+        // Usando a classe LoginResponse para retornar o ID e a mensagem
+        LoginResponse response = new LoginResponse(loggedUser.getId_user(), "Login realizado com sucesso");
+        return ResponseEntity.ok(response);
     }
-
-        return ResponseEntity.ok(loggedUser);
-    }   
-
 }
