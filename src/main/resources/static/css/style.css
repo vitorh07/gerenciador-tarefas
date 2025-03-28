@@ -90,3 +90,54 @@ input[type="text"]:focus, input[type="password"]:focus {
     border-color: #2196F3;
     box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }
+
+/* Estilo para a div de edição */
+.task.editing {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os elementos */
+}
+
+/* Estilo para os inputs de edição */
+.task input[type="text"],
+.task textarea,
+.task input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #DADADA;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #F9F9F9;
+}
+
+.task input[type="text"]:focus,
+.task textarea:focus,
+.task input[type="date"]:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
+}
+
+/* Estilo para os botões de salvar e cancelar */
+.task button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.task button:hover {
+    opacity: 0.9;
+}
+
+.task button:first-of-type {
+    background-color: #4CAF50; /* Verde para o botão de salvar */
+    color: white;
+}
+
+.task button:last-of-type {
+    background-color: #F44336; /* Vermelho para o botão de cancelar */
+    color: white;
+}
