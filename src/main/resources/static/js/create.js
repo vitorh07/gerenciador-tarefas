@@ -1,8 +1,9 @@
-async function register() {
-    const username = document.getElementById('username').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const messageElement = document.getElementById('message');
+async function createTask() {
+    const userId = JSON.parse(localStorage.getItem("user")).id;
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const deadline = document.getElementById("deadline").value;
+    const messageElement = document.getElementById("message");
 
     // Função para exibir mensagens
     function showMessage(message, color) {
@@ -10,35 +11,37 @@ async function register() {
         messageElement.style.color = color;
     }
 
-    if (!username || !password || !email) {
+    if (!title || !description || !deadline) {
         showMessage("Preencha todos os campos!", "red");
         return;
     }
 
-    const registerRequest = {
-        username: username,
-        email: email,
-        password: password
+    const taskRequest = {
+        "title": title,
+        "description": description,
+        "completed": "false",
+        "deadline": deadline,
+        "id_user": userId
     };
 
     try {
-        const response = await fetch('api/users/register', {
+        const response = await fetch(`/api/tasks`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(registerRequest)
+            body: JSON.stringify(taskRequest)
         });
 
         if (!response.ok) {
             const errorData = await response.json();
-            throw new Error(errorData.message || "Erro ao registrar usuário.");
+            throw new Error(errorData.message || "Erro ao criar a tarefa.");
         }
 
         const data = await response.json();
 
         // Exibe mensagem de sucesso
-        showMessage("Usuário, endereço e telefone cadastrados com sucesso!", "green");
+        showMessage("Tarefa criada com sucesso!", "green");
 
         // Limpa os campos do formulário
         document.querySelectorAll('input').forEach(input => input.value = '');

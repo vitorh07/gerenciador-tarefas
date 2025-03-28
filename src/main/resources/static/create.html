@@ -9,11 +9,13 @@
 <body>
     <div id="container">
         <h2>CREATE TASK</h2>
-        <input type="text" class="form" placeholder="Título">
-        <input type="text" class="form" placeholder="Descrição">
-        <input type="date" class="form" placeholder="Prazo">
-        <button id="login">FINISH</button>
+        <input type="text" id="title" class="form" placeholder="Título">
+        <input type="text" id="description" class="form" placeholder="Descrição">
+        <input type="date" id="deadline" class="form" placeholder="Prazo">
+        <p id="message"></p>
+        <button onclick="createTask()">FINISH</button>
         <p><a href="./view.html">Return</a></p>
     </div>
+    <script src="./js/create.js"></script>
 </body>
 </html>
