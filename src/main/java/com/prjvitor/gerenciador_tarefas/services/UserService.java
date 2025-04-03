@@ -14,7 +14,7 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }   
+    }
 
     // Método Criar
     public User saveUser(User user) {
@@ -52,9 +52,6 @@ public class UserService {
         if (user == null) {
             user = userRepository.findByEmail(identifier);
         }
-        if (user != null && user.getPassword().equals(password)) {
-            return user;
-        }
-        return null; // Ou pode lançar uma Exception personalizada se preferir
-    }    
+        return user;
+    }
 }
