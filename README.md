@@ -6,7 +6,8 @@ O **Gerenciador de Tarefas** é uma aplicação web que permite aos usuários cr
 ## 🛠 Tecnologias Utilizadas  
 - **Frontend**: HTML, CSS, JavaScript  
 - **Backend**: Java (Spring Boot)  
-- **Banco de Dados**: H2 (em memória)  
+- **Banco de Dados**: H2 (em memória) 
+- **Segurança**: Spring Security com autenticação JWT   
 - **Bibliotecas e Frameworks**:  
   - Font Awesome (ícones)  
   - Fetch API (requisições HTTP)  
@@ -96,6 +97,10 @@ http://localhost:8080
   - `TaskService.java`: Serviço para gerenciar tarefas.
   - `UserService.java`: Serviço para gerenciar usuários.
   - `EmailService.java`: Serviço para envio de emails.
+- **`security`**: Contém as classes relacionadas à segurança.
+  - `JwtUtil.java`: Classe utilitária para geração e validação de tokens JWT.
+  - `JwtAuthFilter.java`: Filtro para autenticação de requisições.
+  - `SecurityConfig.java`: Configuração de segurança do Spring Security.
 
 ### `src/main/resources`
 - **`application.properties`**: Arquivo de configuração da aplicação.
