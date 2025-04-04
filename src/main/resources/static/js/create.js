@@ -1,5 +1,5 @@
 async function createTask() {
-    const userId = JSON.parse(localStorage.getItem("user")).id;
+    const token = localStorage.getItem("token");
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
     const deadline = document.getElementById("deadline").value;
@@ -19,16 +19,16 @@ async function createTask() {
     const taskRequest = {
         "title": title,
         "description": description,
-        "completed": "false",
-        "deadline": deadline,
-        "id_user": userId
+        "completed": false,
+        "deadline": deadline
     };
 
     try {
         const response = await fetch(`/api/tasks`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}` // Adiciona o token no cabeçalho
             },
             body: JSON.stringify(taskRequest)
         });

@@ -19,22 +19,18 @@ function login() {
         },
         body: JSON.stringify(loginRequest)
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Credenciais inválidas");
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data.id) { // Verifica se o ID do usuário está presente
-            localStorage.setItem('user', JSON.stringify(data));
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Credenciais inválidas");
+            }
+            return response.json();
+        })
+        .then(data => {
+            localStorage.setItem('token', data.token);
             window.location.href = './view.html';
-        } else {
-            alert(data.message || "Erro ao fazer login!");
-        }
-    })
-    .catch(error => {
-        console.error("Erro ao realizar login:", error);
-        alert(error.message || "Ocorreu um erro. Tente novamente mais tarde.");
-    });
+        })
+        .catch(error => {
+            console.error("Erro ao realizar login:", error);
+            alert(error.message || "Ocorreu um erro. Tente novamente mais tarde.");
+        });
 }
